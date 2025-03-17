@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TailwindCSS Course – 404Academy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🚀 404Academy</div>
+        <nav>
+            <a href="index.html">🏠 Home</a>
+            <a href="aboutus.html" class="active">ℹ️ About Us</a>
+            <a href="courses.html" class="active">📚 Courses</a>
+            <a href="challenges.html">🏆 Challenges</a>
+            <a href="contact.html">📞 Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>🎨 TailwindCSS Course</h2>
+            <ul>
+                <li><a href="#" onclick="loadLesson('intro')">Introduction</a></li>
+                <li><a href="#" onclick="loadLesson('setup')">Setup</a></li>
+                <li><a href="#" onclick="loadLesson('utility')">Utility Classes</a></li>
+                <li><a href="#" onclick="loadLesson('grid')">Grid & Flexbox</a></li>
+                <li><a href="#" onclick="loadLesson('responsive')">Responsive Design</a></li>
+                <li><a href="#" onclick="loadLesson('components')">Custom Components</a></li>
+                <li><a href="#" onclick="loadLesson('animations')">Animations</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1 id="lesson-title">🎨 TailwindCSS Course</h1>
+            <div id="lesson-content">
+                <p>Click on a topic from the sidebar to start learning!</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>🚀 404Academy – Learn, Code, Repeat © 2025</p>
+    </footer>
+
+    <script src="tailwind.js"></script>
+</body>
+</html>

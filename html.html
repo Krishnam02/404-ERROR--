@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Course – 404Academy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🚀 404Academy</div>
+        <nav>
+            <a href="index.html">🏠 Home</a>
+            <a href="aboutus.html" class="active">ℹ️ About Us</a>
+            <a href="courses.html" class="active">📚 Courses</a>
+            <a href="challenges.html">🏆 Challenges</a>
+            <a href="contact.html">📞 Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>📜 HTML Course</h2>
+            <ul>
+                <li><a href="#" onclick="loadLesson('intro')">Introduction</a></li>
+                <li><a href="#" onclick="loadLesson('tags')">Basic Tags</a></li>
+                <li><a href="#" onclick="loadLesson('forms')">Forms & Inputs</a></li>
+                <li><a href="#" onclick="loadLesson('tables')">Tables</a></li>
+                <li><a href="#" onclick="loadLesson('media')">Media (Images, Video)</a></li>
+                <li><a href="#" onclick="loadLesson('semantic')">Semantic HTML</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1 id="lesson-title">📜 HTML Course</h1>
+            <div id="lesson-content">
+                <p>Click on a topic from the sidebar to start learning!</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>🚀 404Academy – Learn, Code, Repeat © 2025</p>
+    </footer>
+
+    <script src="html.js"></script>
+</body>
+</html>

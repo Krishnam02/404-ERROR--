@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges - Futuristic Learning</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/dracula.min.css">
+
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/javascript/javascript.min.js"></script>
+</head>
+<body>
+
+    <!-- Futuristic Background Animation -->
+    <div class="background-animation"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html">🏠 Home</a>
+        <a href="aboutus.html">ℹ️ About Us</a>
+        <a href="courses.html" class="active">📚 Courses</a>
+        <a href="challenges.html">🏆 Challenges</a>
+    </nav>
+
+    <!-- Challenges Section -->
+    <section class="challenges-container">
+        <h1>🏆 <span class="gradient-text">Coding Challenges</span></h1>
+        <p>Solve real-world problems and level up your coding skills!</p>
+
+        <!-- Challenges -->
+        <div id="challenges-list"></div>
+
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        const challenges = [
+            {
+                title: "🔥 Challenge 1: Loops",
+                description: "Write a loop that prints numbers from 1 to 10.",
+                defaultCode: `for (let i = 1; i <= 10; i++) {\n    console.log(i);\n}`,
+            },
+            {
+                title: "🚀 Challenge 2: Functions",
+                description: "Write a function that takes a number and returns its square.",
+                defaultCode: `function square(num) {\n    return num * num;\n}\nconsole.log(square(4));`,
+            },
+            {
+                title: "🎯 Challenge 3: Arrays",
+                description: "Create an array of five numbers and print their sum.",
+                defaultCode: `let numbers = [2, 4, 6, 8, 10];\nlet sum = numbers.reduce((a, b) => a + b, 0);\nconsole.log(sum);`,
+            },
+            {
+                title: "🌐 Challenge 4: DOM Manipulation",
+                description: "Create a button that changes the background color when clicked.",
+                defaultCode: `document.body.style.backgroundColor = "cyan";`,
+            },
+            {
+                title: "⚡ Challenge 5: Promises",
+                description: "Write a JavaScript Promise that resolves after 2 seconds.",
+                defaultCode: `let myPromise = new Promise((resolve) => {\n    setTimeout(() => resolve("Promise Resolved!"), 2000);\n});\nmyPromise.then(console.log);`,
+            }
+        ];
+
+        const challengeContainer = document.getElementById("challenges-list");
+
+        challenges.forEach((challenge, index) => {
+            let challengeBox = document.createElement("div");
+            challengeBox.className = "challenge-box";
+            challengeBox.innerHTML = `
+                <h2>${challenge.title}</h2>
+                <p>${challenge.description}</p>
+                <textarea id="editor${index + 1}"></textarea>
+                <div class="buttons">
+                    <button onclick="runCode(${index + 1})">▶ Run Code</button>
+                    <button onclick="showAnswer(${index + 1})">💡 Show Answer</button>
+                </div>
+                <pre id="output${index + 1}" class="output-box"></pre>
+            `;
+            challengeContainer.appendChild(challengeBox);
+        });
+
+        let editors = [];
+        challenges.forEach((_, index) => {
+            editors[index] = CodeMirror.fromTextArea(document.getElementById(`editor${index + 1}`), {
+                mode: "javascript",
+                theme: "dracula",
+                lineNumbers: true
+            });
+        });
+
+        function runCode(index) {
+            try {
+                const code = editors[index - 1].getValue();
+                const result = eval(code);
+                document.getElementById(`output${index}`).innerText = result !== undefined ? result : "✅ Code executed!";
+            } catch (error) {
+                document.getElementById(`output${index}`).innerText = "❌ Error: " + error.message;
+            }
+        }
+
+        function showAnswer(index) {
+            editors[index - 1].setValue(challenges[index - 1].defaultCode);
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.2) 10%, transparent 80%);
+            z-index: -1;
+            animation: backgroundMove 10s infinite linear;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-10px, 10px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px;
+            background: black;
+            border-bottom: 2px solid cyan;
+        }
+
+        .navbar a {
+            color: cyan;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a.active {
+            color: lime;
+        }
+
+        .challenges-container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .challenge-box {
+            border: 2px solid cyan;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            text-align: left;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        .buttons button {
+            background: cyan;
+            color: black;
+            border: none;
+            padding: 8px 12px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .output-box {
+            background: black;
+            border: 1px solid cyan;
+            padding: 10px;
+            margin-top: 10px;
+            color: lime;
+            font-family: monospace;
+        }
+
+        /* Stretching the challenge boxes */
+.challenge-box {
+    width: 100%; /* Make it wider */
+    max-width: 900px; /* Limit max width */
+    margin: auto; /* Center it */
+}
+
+.coding-heading {
+    display: inline-block;
+    animation: neon-glow 1.5s infinite alternate;
+}
+
+/* Glow Effect on Buttons */
+button {
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    box-shadow: 0 0 10px cyan;
+    transform: scale(1.05);
+}
+
+    </style>
+
+</body>
+</html>
